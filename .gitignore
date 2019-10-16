@@ -1,7 +1,7 @@
 __pycache__/
 *.py[cod]
-carpool/__pycache__/
-carpool/migrations/__pycache__/
+app/__pycache__/
+app/migrations/__pycache__/
 oilsdb/__pycache__/
 
 # Distribution / packaging
