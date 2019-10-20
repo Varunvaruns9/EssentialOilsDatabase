@@ -15,11 +15,11 @@ class TestDB(TestCase):
         Through.objects.create(plant=plant3, oil=oil2)
 
     def test_plant_rep(self):
-        plant = Plant.objects.get(id=1)
+        plant = Plant.objects.get(name='Beewort')
         self.assertEquals(plant.name, str(plant))
 
     def test_essentialoil_rep(self):
-        oil = EssentialOil.objects.get(id=1)
+        oil = EssentialOil.objects.get(name='Calamus Oil')
         self.assertEquals(oil.name, str(oil))
 
     def test_through_rep(self):
