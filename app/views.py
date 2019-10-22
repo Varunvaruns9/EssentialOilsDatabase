@@ -1,11 +1,16 @@
 from django.shortcuts import render
+from .models import EssentialOil, Metabolite, Through
 
 
 def index(request):
-    results = {}
+    oils_list = EssentialOil.objects.all()
+    metabolites_list = Metabolite.objects.all()
+    result = {}
     if request.method == 'POST':
-        if 'plant' in request.POST:
-            results = 
-        else:
-            results = 
-    render(request, 'index.html', {})
+        if 'oil' in request.POST:
+            result['oil'] = EssentialOil.objects.get(name=request.POST['oil'])
+            result['metabolites'] = result['oil'].metabolites.all()
+        if 'metabolite' in request.POST:
+            result['metabolite'] = Metabolite.objects.get(name=request.POST['metabolite'])
+            result['oils'] = result['metabolite'].essentialoil_set.all()
+    return render(request, 'index.html', {'oils_list': oils_list, 'metabolites_list': metabolites_list, 'result': result})

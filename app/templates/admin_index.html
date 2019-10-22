@@ -50,10 +50,10 @@
     <p>{% trans 'You don’t have permission to view or edit anything.' %}</p>
 {% endif %}
     <div>
-        <h1>Upload a .xlsx file</h1>
+        <h1>Upload a .csv file</h1>
         <form action="/excelfile/" method="post">
-            <input type="file" name="xlx" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
-            <input type="submit" name="excel">
+            <input type="file" name="csv" accept=".csv" />
+            <input type="submit" name="submit" />
         </form>
     </div>
 </div>
