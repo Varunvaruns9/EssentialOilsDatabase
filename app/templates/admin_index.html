@@ -51,8 +51,9 @@
 {% endif %}
     <div>
         <h1>Upload a .csv file</h1>
-        <form action="/excelfile/" method="post">
-            <input type="file" name="csv" accept=".csv" />
+        <form action="/load/" method="post">
+            {% csrf_token %}
+            <input type="file" name="csv" accept=".csv" required />
             <input type="submit" name="submit" />
         </form>
     </div>

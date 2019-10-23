@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from .models import EssentialOil, Metabolite, Through
 
 
@@ -14,3 +14,7 @@ def index(request):
             result['metabolite'] = Metabolite.objects.get(name=request.POST['metabolite'])
             result['oils'] = result['metabolite'].essentialoil_set.all()
     return render(request, 'index.html', {'oils_list': oils_list, 'metabolites_list': metabolites_list, 'result': result})
+
+def load(request):
+    print(request.FILES['csv'])
+    return HttpResponseRedirect('/admin/')

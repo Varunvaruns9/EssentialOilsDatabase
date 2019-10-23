@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Essential Oils Database Webpage</title>
   <meta charset="utf-8">
@@ -9,10 +10,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <style>
-  .fakeimg {
-    height: 200px;
-    background: #aaa;
-  }
   .header {
     margin-bottom: 0;
     background-color: rgb(65, 118, 144);
@@ -21,7 +18,7 @@
   </style>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
 
 <div class="jumbotron text-center header">
   <h1>Essential Oils Database</h1> 
@@ -32,7 +29,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" href="/admin/">Admin</a>
       </li>
@@ -45,53 +42,90 @@
 
 <div class="row">
   <div class="w-50 p-3">
+    <h5>Oil Name</h5>
     <div class="dropdown">
       <form action="/" method="post">
         {% csrf_token %}
-        <select name="oil" class="btn btn-primary">
+        <select name="oil" class="btn btn-light">
           {% for oil in oils_list %}
           <option value="{{ oil.name }}">{{ oil.name }}</option>
           {% endfor %}
         </select>
-        <button type="submit" class="btn btn-default">Submit</button>
+        &nbsp;&nbsp;
+        <button type="submit" class="btn btn-default btn-info">Submit</button>
       </form>
     </div> 
   </div>
 
   <div class="w-50 p-3">
+    <h5>Metabolite Name</h5>
     <div class="dropdown">
       <form action="/" method="post">
         {% csrf_token %}
-        <select name="metabolite" class="btn btn-primary">
+        <select name="metabolite" class="btn btn-light">
           {% for metabolite in metabolites_list %}
           <option value="{{ metabolite.name }}">{{ metabolite.name }}</option>
           {% endfor %}
         </select>
-        <button type="submit" class="btn btn-default">Submit</button>
+        &nbsp;&nbsp;
+        <button type="submit" class="btn btn-default btn-info">Submit</button>
       </form>
     </div> 
   </div>
 </div>
 
 <div class="container">
-  {{ result.oil }}
-  {% for metabolite in result.metabolites %}
-    {{ metabolite }}
-  {% endfor %}
-  <img src="{{ result.metabolite.image.url }}" height="400px">
-  {% for oil in result.oils %}
-    {{ oil }}
-  {% endfor %}
+  {% if result.oil %}
+    <div class="card text-white bg-dark mb-3">
+      <div class="card-body">
+        <h4 class="card-title">{{ result.oil }}</h4>
+        <p class="card-text">{{ result.oil.abbr }} - {{ result.oil.scientific_name }} - {{ result.oil.family }}</p>
+        {% if result.oil.graph %}
+        <img src="{{ result.oil.graph.url }}" class="card-img-top" />
+        {% endif %}
+      </div>
+    </div>
+    {% for metabolite in result.metabolites %}
+      <div class="card mb-3" style="max-width: 18rem;">
+        <div class="card-body">
+          <h4 class="card-title">{{ metabolite }}</h4>
+          {% if metabolite.image %}
+          <img src="{{ metabolite.image.url }}" class="card-img-top" />
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+  {% if result.metabolite %}
+    <div class="card text-white bg-dark mb-3">
+      <div class="card-body">
+        <h4 class="card-title">{{ result.metabolite }}</h4>
+        {% if result.metabolite.image %}
+        <img src="{{ result.metabolite.image.url }}" class="card-img-top" />
+        {% endif %}
+      </div>
+    </div>
+    {% for oil in result.oils %}
+      <div class="card mb-3" style="max-width: 18rem;">
+        <div class="card-body">
+          <h4 class="card-title">{{ oil }}</h4>
+          <p class="card-text">{{ oil.abbr }} - {{ oil.scientific_name }} - {{ oil.family }}</p>
+          {% if oil.graph %}
+          <img src="{{ oil.graph.url }}" class="card-img-top" />
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
 </div>
 
-<!-- Footer -->
-<footer class="page-footer font-small blue fixed-bottom">
+<footer class="page-footer font-small blue">
 
-  <!-- Copyright -->
   <div class="footer-copyright text-center py-3">© 2019 Copyright:
     <a href="https://www.iitmandi.ac.in/"> IIT Mandi</a>
   </div>
-  <!-- Copyright -->
 
 </footer>
-<!-- Footer -->
+</body>
+</html>
