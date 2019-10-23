@@ -4,6 +4,7 @@ __pycache__/
 app/__pycache__/
 app/migrations/__pycache__/
 oilsdb/__pycache__/
+media/
 
 # Distribution / packaging
 bin/
