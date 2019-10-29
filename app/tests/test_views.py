@@ -1,8 +1,9 @@
 from django.test import TestCase
+from django.urls import reverse
 from app.models import Metabolite, EssentialOil, Through
 
 
-class TestDB(TestCase):
+class TestIndexView(TestCase):
     # Create test database.
     @classmethod
     def setUpTestData(cls):
@@ -15,18 +16,18 @@ class TestDB(TestCase):
         Through.objects.create(metabolite=meta2, oil=oil1, identity=89.3, mzratio=189.0, time=14.321, relative_abundance1=0.027387527,
                                 relative_abundance2=0.027628735, relative_abundance3=0.027549428, relative_abundance4=0.027742598)
 
-    # Check values are being stored properly in Metabolite.
-    def test_metabolite_rep(self):
-        meta = Metabolite.objects.get(name='Pentacosane <n->')
-        self.assertEquals(meta.name, str(meta))
+    # Check if url is accessible.
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
 
-    # Check values are being stored properly in EssentialOil.
-    def test_essentialoil_rep(self):
-        oil = EssentialOil.objects.get(name='Lavender Oil')
-        self.assertEquals(oil.name, str(oil))
+    # Check if url is accessible with name.
+    def test_view_url_accessible_by_name(self):
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
 
-    # Check values are being stored properly in Through.
-    def test_through_rep(self):
-        through = Through.objects.get(id=1)
-        expected_name = "{} - {}".format(through.oil.name, through.metabolite.name)
-        self.assertEquals(expected_name, str(through))
+    # Check if template is rendered properly.
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'index.html')
