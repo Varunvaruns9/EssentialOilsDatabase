@@ -32,7 +32,12 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-7. Run the server.
+7. Run the tests.
+```
+python manage.py test
+```
+
+8. Run the server.
 ```
 python manage.py runserver
 ```
