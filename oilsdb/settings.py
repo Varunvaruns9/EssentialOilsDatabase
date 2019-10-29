@@ -48,6 +48,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'oilsdb.wsgi.application'
 
+# Change it use your secret database username and password.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
