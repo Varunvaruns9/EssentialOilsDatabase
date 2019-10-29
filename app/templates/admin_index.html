@@ -1,7 +1,8 @@
 {% extends "admin/base_site.html" %}
 {% load i18n static %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 
@@ -51,9 +52,29 @@
 {% endif %}
     <div>
         <h1>Upload a .csv file</h1>
-        <form action="/load/" method="post">
+        <form action="/load/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="file" name="csv" accept=".csv" required />
+            <fieldset class="module aligned">
+                <div class="form-row field-name">
+                    <label class="required">Name:</label>
+                    <input type="text" name="name" required />
+                </div>
+                <div class="form-row field-abbr">
+                    <label class="required">Abbr:</label>
+                    <input type="text" name="abbr" required />
+                </div>
+                <div class="form-row field-scientific_name">
+                    <label class="required">Scientific Name:</label>
+                    <input type="text" name="scientific_name" required />
+                </div>
+                <div class="form-row field-family">
+                    <label class="required">Family:</label>
+                    <input type="text" name="family" required />
+                </div>
+                <div class="form-row">
+                    <input type="file" name="csv" accept=".csv" required />
+                </div>
+            </fieldset>
             <input type="submit" name="submit" />
         </form>
     </div>
