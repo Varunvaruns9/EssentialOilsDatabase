@@ -16,12 +16,14 @@ def index(request):
         # Retrieve all related metabolites.
         if 'oil' in request.POST:
             result['oil'] = EssentialOil.objects.get(name=request.POST['oil'])
-            result['metabolites'] = result['oil'].metabolites.all()
+            result['metabolites'] = Through.objects.filter(oil=result['oil'])
+            # for metabolite in result['metabolites']:
+            #     through['metabolite'] = Through.objects.get()
         # If submit button for metabolite was pressed-
         # Retrieve all related oils.
         if 'metabolite' in request.POST:
             result['metabolite'] = Metabolite.objects.get(name=request.POST['metabolite'])
-            result['oils'] = result['metabolite'].essentialoil_set.all()
+            result['oils'] = Through.objects.filter(metabolite=result['metabolite'])
     return render(request, 'index.html', {'oils_list': oils_list, 'metabolites_list': metabolites_list, 'result': result})
 
 

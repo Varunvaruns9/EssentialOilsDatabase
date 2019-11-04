@@ -88,10 +88,17 @@
     {% for metabolite in result.metabolites %}
       <div class="card mb-3" style="max-width: 18rem;">
         <div class="card-body">
-          <h4 class="card-title">{{ metabolite }}</h4>
-          {% if metabolite.image %}
-          <img src="{{ metabolite.image.url }}" class="card-img-top" />
+          <h4 class="card-title">{{ metabolite.metabolite }}</h4>
+          {% if metabolite.metabolite.image %}
+          <img src="{{ metabolite.metabolite.image.url }}" class="card-img-top" />
           {% endif %}
+          Match Factor: {{ metabolite.identity }}%<br>
+          Product Ion: {{ metabolite.mzratio }}<br>
+          Time: {{ metabolite.time }} min<br>
+          Relative% 1: {{ metabolite.relative_abundance1 }}<br>
+          Relative% 2: {{ metabolite.relative_abundance2 }}<br>
+          Relative% 3: {{ metabolite.relative_abundance3 }}<br>
+          Relative% 4: {{ metabolite.relative_abundance4 }}
         </div>
       </div>
     {% endfor %}
@@ -108,11 +115,18 @@
     {% for oil in result.oils %}
       <div class="card mb-3" style="max-width: 18rem;">
         <div class="card-body">
-          <h4 class="card-title">{{ oil }}</h4>
-          <p class="card-text">{{ oil.abbr }} - {{ oil.scientific_name }} - {{ oil.family }}</p>
-          {% if oil.graph %}
-          <img src="{{ oil.graph.url }}" class="card-img-top" />
+          <h4 class="card-title">{{ oil.oil }}</h4>
+          <p class="card-text">{{ oil.oil.abbr }} - {{ oil.oil.scientific_name }} - {{ oil.oil.family }}</p>
+          {% if oil.oil.graph %}
+          <img src="{{ oil.oil.graph.url }}" class="card-img-top" />
           {% endif %}
+          Match Factor: {{ oil.identity }}%<br>
+          Product Ion: {{ oil.mzratio }}<br>
+          Time: {{ oil.time }} min<br>
+          Relative% 1: {{ oil.relative_abundance1 }}<br>
+          Relative% 2: {{ oil.relative_abundance2 }}<br>
+          Relative% 3: {{ oil.relative_abundance3 }}<br>
+          Relative% 4: {{ oil.relative_abundance4 }}
         </div>
       </div>
     {% endfor %}
