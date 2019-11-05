@@ -5,8 +5,11 @@ import pandas as pd
 import math
 
 
-# View for the query page.
 def index(request):
+    """
+    View for the query page. Loads all possible values of EssentialOils and Metabolites from the database and
+    return the relationship between the selected EssentialOil and Metabolites and its corresponding matches.
+    """
     oils_list = EssentialOil.objects.all().order_by('name')
     metabolites_list = Metabolite.objects.all().order_by('name')
     # For storing the retrieved results.
@@ -27,9 +30,11 @@ def index(request):
     return render(request, 'index.html', {'oils_list': oils_list, 'metabolites_list': metabolites_list, 'result': result})
 
 
-# View for the csv submission page.
 @staff_member_required
 def load(request):
+    """
+    View for the csv submission page. Adds a new EssentialOil and related oils from the given CSV file.
+    """
     data = pd.read_csv(request.FILES['csv'], skiprows=1)
     # Find the oil according to given information or create if it doesn't exist.
     oil,_ = EssentialOil.objects.get_or_create(name=request.POST['name'], abbr=request.POST['abbr'],
@@ -45,5 +50,9 @@ def load(request):
                                                     relative_abundance3=row[7], relative_abundance4=row[8])
     return HttpResponseRedirect('/admin/')
 
+
 def manual(request):
+    """
+    View for rendering the user manual. Contains information on how to use and information about the authors.
+    """
     return render(request, 'manual.html')
