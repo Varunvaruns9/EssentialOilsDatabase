@@ -8,4 +8,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     # Url for csv upload form.
     path('load/', views.load, name='load'),
+    # Url for user manual.
+    path('manual/', views.manual, name='manual'),
 ]

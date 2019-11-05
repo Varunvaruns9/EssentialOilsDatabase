@@ -7,8 +7,8 @@ import math
 
 # View for the query page.
 def index(request):
-    oils_list = EssentialOil.objects.all()
-    metabolites_list = Metabolite.objects.all()
+    oils_list = EssentialOil.objects.all().order_by('name')
+    metabolites_list = Metabolite.objects.all().order_by('name')
     # For storing the retrieved results.
     result = {}
     if request.method == 'POST':
@@ -16,14 +16,14 @@ def index(request):
         # Retrieve all related metabolites.
         if 'oil' in request.POST:
             result['oil'] = EssentialOil.objects.get(name=request.POST['oil'])
-            result['metabolites'] = Through.objects.filter(oil=result['oil'])
+            result['metabolites'] = Through.objects.filter(oil=result['oil']).order_by('metabolite__name')
             # for metabolite in result['metabolites']:
             #     through['metabolite'] = Through.objects.get()
         # If submit button for metabolite was pressed-
         # Retrieve all related oils.
         if 'metabolite' in request.POST:
             result['metabolite'] = Metabolite.objects.get(name=request.POST['metabolite'])
-            result['oils'] = Through.objects.filter(metabolite=result['metabolite'])
+            result['oils'] = Through.objects.filter(metabolite=result['metabolite']).order_by('oil__name')
     return render(request, 'index.html', {'oils_list': oils_list, 'metabolites_list': metabolites_list, 'result': result})
 
 
@@ -44,3 +44,6 @@ def load(request):
                                                     relative_abundance1=row[5], relative_abundance2=row[6],
                                                     relative_abundance3=row[7], relative_abundance4=row[8])
     return HttpResponseRedirect('/admin/')
+
+def manual(request):
+    return render(request, 'manual.html')
