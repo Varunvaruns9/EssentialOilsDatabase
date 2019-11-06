@@ -16,6 +16,33 @@
     color: #f5dd5d;
   }
   </style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+  <style>
+  .center {
+    margin: auto;
+    width: 60%;
+    border: 0px solid #73AD21;
+    padding: 10px;
+    text-align: center;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    
+  }
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  </style>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -40,26 +67,50 @@
   </div>  
 </nav>
 
+<div class="w3-container w3-flat-silver center" style="margin-top: 2em;">
+  <h2 class="center">User</h2>
+  <a href="https://imgdump4.novarata.net/image.uploads/05-11-2019/original-a5ba9822ff22f2eabf51780a9fddf244.png"><img src="https://imgdump4.novarata.net/image.uploads/05-11-2019/original-a5ba9822ff22f2eabf51780a9fddf244.png" height="300" width="500"></a>
 
-<div class="container" style="margin-top:30px">
+
+  <h3>Searching for the metabolites present in a certain oil:</h3>
+  <p>Select an oil from dropdown menu under oil names.</p><p>Then Press Submit to get a list of all the metabolites present in that oil.</p>
+  <h3>Searching for the oils in which a certain metabolite is present:</h3>
+  <p>Select a metabolite from dropdown menu under metabolite names.</p><p>Then Press Submit to get a list of all the oils in which that metabolite is present.</p>
+
+</div>
+
+
+<div class="w3-container w3-flat-silver center" style="margin-top: 2em;">
+  <h2 class="center">Admin</h2>
+  <div>Admin needs to log in to the application to do the following things: </div>
+  <a href="https://imgdump4.novarata.net/image.uploads/05-11-2019/original-ef74c4bc03a3b38d651c2f7ec1d99abc.png"><img src="https://imgdump4.novarata.net/image.uploads/05-11-2019/original-ef74c4bc03a3b38d651c2f7ec1d99abc.png"/ height="300" width="500"></a>
+
+  <h3>Add data of a new oil using a csv file:</h3>
+  <p>Fill all the required feilds and upload the .csv file. Click submit to add the data to the database.</p>
+  <h3>Adding new admins:</h3>
+  <p>This can be done under the Authentication and Authorization menu.</p>
+  <h3>Changing Specefic data already present in the database:</h3>
+  <p>This can be done under the APP menu. Where a metabolite or an oil can be deleted. Through menu can be used to change the attributes of the through table</p>
+
+</div>
+
+
+<div class="container center" style="margin-top:30px">
   <div style="margin-bottom: 2em;">
-    <h3>Developers</h3>
+    <h3><u>Developers</u></h3>
     Varun Singh<br>
     Tushar Tyagi<br>
     Vaibhav Saini
   </div>
   <div style="margin-bottom: 2em;">
-    <h3>In association with</h3>
+    <h3><u>In association with</u></h3>
     Dr. Shyam Kumar Masakapalli<br>
     Maneesh Lingwan
   </div>
-</div>
-
-<footer class="page-footer font-small blue">
-  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+  <div>© 2019 Copyright:
     <a href="https://www.iitmandi.ac.in/"> IIT Mandi</a>
   </div>
-</footer>
+</div>
 
 </body>
 </html>
