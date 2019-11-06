@@ -1,5 +1,6 @@
 # Essential Oils Database
 
+The code can be found at https://github.com/Varunvaruns9/EssentialOilsDatabase
 Essential oils of Himachal database is a database project which will help maintain the data of plants and the essential oils they contain and help the users to retrieve that information easily using a web application.
 
 ## Installation instructions
@@ -41,3 +42,10 @@ python manage.py test
 ```
 python manage.py runserver
 ```
+
+## Documentation
+
+Developer documentation can be compiled by going into `docs/` folder and using `make html` command.
+The compiled docs can be accessed from `docs/_build`.
+
+User documentation can be found at the Manual page on the main website or in the `manual` html template.
